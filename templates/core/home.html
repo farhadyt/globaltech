@@ -1,0 +1,868 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}GlobalTech - Advanced IT Infrastructure & Technical Support{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* Futuristic IT Platform Styles */
+:root {
+    --primary-color: #00ff88;
+    --secondary-color: #00ccff;
+    --accent-color: #ff00ff;
+    --dark-bg: #0a0a0a;
+    --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+    --cyber-glow: 0 0 20px var(--secondary-color), 0 0 40px var(--secondary-color);
+}
+
+/* Matrix Rain Effect */
+.matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.matrix-drop {
+    position: absolute;
+    color: var(--primary-color);
+    font-family: monospace;
+    font-size: 20px;
+    animation: matrixFall linear infinite;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+@keyframes matrixFall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0,255,136,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+    z-index: 0;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Enhanced Button Effects */
+.btn-futuristic {
+    position: relative;
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-futuristic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.btn-futuristic:hover {
+    color: var(--dark-bg);
+    box-shadow: var(--neon-glow);
+    transform: translateY(-2px);
+}
+
+.btn-futuristic:hover::before {
+    left: 0;
+}
+
+/* Holographic Effect */
+.holographic {
+    background: linear-gradient(45deg, 
+        rgba(0,255,136,0.1), 
+        rgba(0,204,255,0.1), 
+        rgba(255,0,255,0.1), 
+        rgba(0,255,136,0.1));
+    background-size: 400% 400%;
+    animation: holographicShift 10s ease infinite;
+}
+
+@keyframes holographicShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Loading Screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-text {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-family: 'Orbitron', sans-serif;
+    animation: loadingGlitch 0.5s infinite;
+}
+
+@keyframes loadingGlitch {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: var(--primary-color);
+    animation: terminalBlink 1s infinite;
+    margin-left: 5px;
+}
+
+@keyframes terminalBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Data Stream Effect */
+.data-stream {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+    animation: dataStreamFlow 2s linear infinite;
+}
+
+@keyframes dataStreamFlow {
+    0% { 
+        transform: translateY(-100%); 
+        opacity: 0;
+    }
+    50% { opacity: 1; }
+    100% { 
+        transform: translateY(100vh); 
+        opacity: 0;
+    }
+}
+
+/* Cybersecurity Shield */
+.cyber-shield {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.shield-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    animation: shieldRotate 10s linear infinite;
+}
+
+.shield-layer:nth-child(2) {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    border-color: var(--secondary-color);
+    animation-duration: 8s;
+    animation-direction: reverse;
+}
+
+.shield-layer:nth-child(3) {
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    border-color: var(--accent-color);
+    animation-duration: 6s;
+}
+
+@keyframes shieldRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Clients Section Enhancement */
+.clients-showcase {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0,255,136,0.1) 0%, rgba(0,204,255,0.1) 100%);
+    border-radius: 20px;
+    padding: 40px;
+    overflow: hidden;
+    border: 1px solid rgba(0,255,136,0.3);
+}
+
+.clients-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.clients-showcase:hover .clients-image {
+    opacity: 1;
+    transform: scale(1.02);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-container">
+        <div class="loading-text">INITIALIZING SYSTEMS...<span class="terminal-cursor"></span></div>
+    </div>
+</div>
+
+<!-- Matrix Rain Effect -->
+<div class="matrix-rain" id="matrixRain"></div>
+
+<!-- Cyber Grid Background -->
+<div class="cyber-grid"></div>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div id="particles-js"></div>
+    
+    <!-- Data Streams -->
+    <div class="data-stream" style="left: 10%;"></div>
+    <div class="data-stream" style="left: 30%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 50%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 70%; animation-delay: 1.5s;"></div>
+    <div class="data-stream" style="left: 90%; animation-delay: 2s;"></div>
+    <div class="hero-content">
+        <div class="hero-text" data-aos="fade-up">
+            <h1 class="hero-title">
+                <span class="glitch" data-text="GLOBALTECH">GLOBALTECH</span>
+                <div class="hero-subtitle" style="font-family: 'Orbitron', sans-serif;">
+                    <span style="color: var(--primary-color);">></span> Advanced IT Infrastructure Solutions<span class="terminal-cursor"></span>
+                </div>
+            </h1>
+            <p class="hero-description">
+                Futuristic technical support and infrastructure management for the digital age
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-futuristic" onclick="scrollToSection('services')">
+                    <i class="fas fa-rocket"></i> EXPLORE SERVICES
+                </button>
+                <button class="btn-futuristic" onclick="scrollToSection('contact')">
+                    <i class="fas fa-phone"></i> GET SUPPORT
+                </button>
+            </div>
+        </div>
+        
+        <div class="hero-visual" data-aos="fade-left" style="position: relative;">
+            <div class="cyber-shield">
+                <div class="shield-layer"></div>
+                <div class="shield-layer"></div>
+                <div class="shield-layer"></div>
+            </div>
+            <div class="server-rack holographic">
+                <div class="server-unit holographic" data-aos="fade-up" data-aos-delay="100">
+                    <div class="server-lights">
+                        <div class="led green"></div>
+                        <div class="led blue"></div>
+                        <div class="led red"></div>
+                    </div>
+                    <div class="server-ports"></div>
+                </div>
+                <div class="server-unit holographic" data-aos="fade-up" data-aos-delay="200">
+                    <div class="server-lights">
+                        <div class="led green"></div>
+                        <div class="led green"></div>
+                        <div class="led yellow"></div>
+                    </div>
+                    <div class="server-ports"></div>
+                </div>
+                <div class="server-unit holographic" data-aos="fade-up" data-aos-delay="300">
+                    <div class="server-lights">
+                        <div class="led blue"></div>
+                        <div class="led green"></div>
+                        <div class="led green"></div>
+                    </div>
+                    <div class="server-ports"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enhanced Status Bar -->
+    <div class="status-bar holographic">
+        <div class="status-item">
+            <i class="fas fa-server"></i>
+            <span>System Status: <span class="status-green">OPERATIONAL</span></span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Security: <span class="status-value">MAXIMUM</span></span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Uptime: <span class="status-value">99.9%</span></span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-clock"></i>
+            <span>Response: <span class="status-value">&lt;30ms</span></span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-users"></i>
+            <span>Active Clients: <span class="status-value counter">247</span></span>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section with Enhanced Effects -->
+<section id="services" class="services section-transition">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="font-family: 'Orbitron', sans-serif;"><span style="color: var(--primary-color);">></span> Our <span class="highlight">Services</span></h2>
+            <p>Comprehensive IT solutions for modern businesses</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Cloud Infrastructure -->
+            <div class="service-card holographic" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">
+                    <i class="fas fa-cloud"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Cloud Infrastructure</h3>
+                <p>Enterprise-level cloud solutions with guaranteed uptime and scalability</p>
+                <div class="service-features">
+                    <span class="feature-tag">AWS Integration</span>
+                    <span class="feature-tag">Auto-scaling</span>
+                    <span class="feature-tag">24/7 Monitoring</span>
+                </div>
+                <div class="service-overlay">
+                    <div class="tech-pattern"></div>
+                </div>
+            </div>
+            
+            <!-- Network Security with Cybersecurity Effect -->
+            <div class="service-card holographic" data-aos="fade-up" data-aos-delay="200" style="position: relative; overflow: visible;">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Network Security</h3>
+                <p>Advanced cybersecurity protocols and real-time threat detection</p>
+                <div class="service-features">
+                    <span class="feature-tag">Firewall Management</span>
+                    <span class="feature-tag">Intrusion Detection</span>
+                    <span class="feature-tag">Threat Analysis</span>
+                </div>
+                <div class="cyber-shield" style="transform: scale(0.3); opacity: 0.3; top: -20px; z-index: -1;">
+                    <div class="shield-layer"></div>
+                </div>
+            </div>
+            
+            <!-- Hardware Solutions -->
+            <div class="service-card holographic" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon">
+                    <i class="fas fa-server"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Hardware Solutions</h3>
+                <p>Professional hardware installation, maintenance, and optimization</p>
+                <div class="service-features">
+                    <span class="feature-tag">Server Setup</span>
+                    <span class="feature-tag">Diagnostics</span>
+                    <span class="feature-tag">Performance Tuning</span>
+                </div>
+                <div class="service-overlay">
+                    <div class="tech-pattern"></div>
+                </div>
+            </div>
+            
+            <!-- Technical Support -->
+            <div class="service-card holographic" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-icon">
+                    <i class="fas fa-headset"></i>
+                    <div class="icon-glow"></div>
+                </div>
+                <h3>Technical Support</h3>
+                <p>24/7 expert technical support for all your IT infrastructure needs</p>
+                <div class="service-features">
+                    <span class="feature-tag">Remote Support</span>
+                    <span class="feature-tag">On-site Service</span>
+                    <span class="feature-tag">Emergency Response</span>
+                </div>
+                <div class="service-overlay">
+                    <div class="tech-pattern"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Infrastructure Section with Enhanced Network Visualization -->
+<section id="infrastructure" class="infrastructure section-transition">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="font-family: 'Orbitron', sans-serif;"><span style="color: var(--primary-color);">></span> Our <span class="highlight">Infrastructure</span></h2>
+            <p>State-of-the-art technology powering your business</p>
+        </div>
+        
+        <div class="infrastructure-content">
+            <div class="network-visualization" data-aos="fade-right">
+                <div class="network-hub">
+                    <div class="hub-center holographic">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="network-nodes">
+                        <div class="node node-1 holographic">
+                            <i class="fas fa-server"></i>
+                            <span>Server Farm</span>
+                        </div>
+                        <div class="node node-2 holographic">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud Services</span>
+                        </div>
+                        <div class="node node-3 holographic">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security Layer</span>
+                        </div>
+                        <div class="node node-4 holographic">
+                            <i class="fas fa-database"></i>
+                            <span>Data Center</span>
+                        </div>
+                        <div class="node node-5 holographic">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Network Core</span>
+                        </div>
+                        <div class="node node-6 holographic">
+                            <i class="fas fa-satellite-dish"></i>
+                            <span>Connectivity</span>
+                        </div>
+                    </div>
+                    <div class="connection-lines">
+                        <div class="connection-line line-1"></div>
+                        <div class="connection-line line-2"></div>
+                        <div class="connection-line line-3"></div>
+                        <div class="connection-line line-4"></div>
+                        <div class="connection-line line-5"></div>
+                        <div class="connection-line line-6"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="infrastructure-stats" data-aos="fade-left">
+                <div class="stat-card holographic">
+                    <div class="stat-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="counter">500</h3>
+                        <p>Servers Managed</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card holographic">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>99.9%</h3>
+                        <p>Uptime Guarantee</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card holographic">
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>&lt;30ms</h3>
+                        <p>Response Time</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card holographic">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Zero</h3>
+                        <p>Security Breaches</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced Clients Section -->
+<section id="clients" class="clients section-transition">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="font-family: 'Orbitron', sans-serif;"><span style="color: var(--primary-color);">></span> Our <span class="highlight">Clients</span></h2>
+            <p>Trusted by leading companies worldwide</p>
+        </div>
+        
+        <div class="clients-grid" data-aos="fade-up" data-aos-delay="200">
+            <div class="clients-showcase">
+                <div class="client-logos">
+                    <img src="{% static 'images/customers/customers.jpg' %}" alt="Our Prestigious Clients" class="clients-image">
+                </div>
+                <div class="clients-overlay">
+                    <div class="client-counter">
+                        <span class="counter-number counter">500</span>
+                        <span class="counter-text">Happy Clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonials" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-card holographic">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"GlobalTech transformed our IT infrastructure completely. Their 24/7 support is exceptional."</p>
+                    <div class="testimonial-author">
+                        <strong>Rəşad Əliyev</strong>
+                        <span>CTO, TechCorp Azerbaijan</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card holographic">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Professional service, cutting-edge technology, and unmatched reliability. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <strong>Leyla Həsənova</strong>
+                        <span>IT Director, BakuBank</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enhanced Contact Section -->
+<section id="contact" class="contact section-transition">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="font-family: 'Orbitron', sans-serif;"><span style="color: var(--primary-color);">></span> Get <span class="highlight">In Touch</span></h2>
+            <p>Ready to revolutionize your IT infrastructure?</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-info" data-aos="fade-right">
+                <div class="contact-card holographic">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Baku, Azerbaijan<br>28 May Street, AZ1000</p>
+                </div>
+                
+                <div class="contact-card holographic">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+994 XX XXX XX XX<br>24/7 Emergency Support</p>
+                </div>
+                
+                <div class="contact-card holographic">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@globaltech.az<br>support@globaltech.az</p>
+                </div>
+            </div>
+            
+            <div class="contact-form" data-aos="fade-left">
+                <form class="tech-form holographic">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                        <div class="form-line"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                        <div class="form-line"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number">
+                        <div class="form-line"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option value="cloud">Cloud Infrastructure</option>
+                            <option value="security">Network Security</option>
+                            <option value="hardware">Hardware Solutions</option>
+                            <option value="support">Technical Support</option>
+                        </select>
+                        <div class="form-line"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <div class="form-line"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn-futuristic">
+                        <i class="fas fa-paper-plane"></i>
+                        SEND MESSAGE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Loading Screen
+window.addEventListener('load', function() {
+    setTimeout(() => {
+        document.getElementById('loadingScreen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }, 500);
+    }, 2000);
+});
+
+// Matrix Rain Effect
+function createMatrixRain() {
+    const matrixRain = document.getElementById('matrixRain');
+    const characters = '01';
+    
+    for (let i = 0; i < 50; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'matrix-drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        drop.textContent = characters[Math.floor(Math.random() * characters.length)];
+        matrixRain.appendChild(drop);
+    }
+}
+
+createMatrixRain();
+
+// Enhanced Particles.js configuration
+particlesJS('particles-js', {
+    particles: {
+        number: { value: 100, density: { enable: true, value_area: 800 } },
+        color: { value: ['#00ff88', '#00ccff', '#ff00ff'] },
+        shape: { 
+            type: ['circle', 'triangle', 'polygon'],
+            polygon: { nb_sides: 5 }
+        },
+        opacity: { 
+            value: 0.5, 
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+        },
+        size: { 
+            value: 3, 
+            random: true,
+            anim: { enable: true, speed: 4, size_min: 0.3, sync: false }
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#00ff88',
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 3,
+            direction: 'none',
+            random: true,
+            straight: false,
+            out_mode: 'bounce',
+            bounce: false,
+            attract: { enable: true, rotateX: 600, rotateY: 1200 }
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: { enable: true, mode: 'grab' },
+            onclick: { enable: true, mode: 'push' },
+            resize: true
+        },
+        modes: {
+            grab: { distance: 140, line_linked: { opacity: 1 } },
+            push: { particles_nb: 4 },
+            repulse: { distance: 200, duration: 0.4 }
+        }
+    },
+    retina_detect: true
+});
+
+// Counter Animation
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.innerText);
+        const increment = target / 200;
+        let current = 0;
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                counter.innerText = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.innerText = target + '+';
+            }
+        };
+        
+        updateCounter();
+    });
+}
+
+// Intersection Observer for animations
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            if (entry.target.querySelector('.counter')) {
+                animateCounters();
+            }
+            entry.target.classList.add('active');
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.section-transition').forEach(section => {
+    observer.observe(section);
+});
+
+// Smooth Scrolling
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Dynamic Status Updates
+setInterval(() => {
+    const statusValue = document.querySelector('.status-bar .counter');
+    if (statusValue) {
+        const currentValue = parseInt(statusValue.innerText);
+        statusValue.innerText = currentValue + Math.floor(Math.random() * 5 - 2);
+    }
+}, 3000);
+
+// Form Submission Effect
+document.querySelector('.tech-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const button = this.querySelector('button');
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
+    
+    setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check"></i> MESSAGE SENT!';
+        button.style.background = 'var(--primary-color)';
+        button.style.color = 'var(--dark-bg)';
+        
+        setTimeout(() => {
+            button.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
+            button.style.background = '';
+            button.style.color = '';
+            this.reset();
+        }, 3000);
+    }, 2000);
+});
+
+// Page Transition Effects
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        document.querySelectorAll('.data-stream').forEach((stream, index) => {
+            stream.style.animationPlayState = 'running';
+        });
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+// Cybersecurity Shield Hover Effect
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        if (this.querySelector('.fa-shield-alt')) {
+            const shield = this.querySelector('.cyber-shield');
+            if (shield) {
+                shield.style.opacity = '1';
+                shield.style.transform = 'scale(0.5)';
+            }
+        }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        const shield = this.querySelector('.cyber-shield');
+        if (shield) {
+            shield.style.opacity = '0.3';
+            shield.style.transform = 'scale(0.3)';
+        }
+    });
+});
+</script>
+<script src="{% static 'js/verify-futuristic.js' %}"></script>
+{% endblock %}

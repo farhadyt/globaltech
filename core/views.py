@@ -107,3 +107,7 @@ def contact(request):
 def about(request):
     """About page"""
     return render(request, 'core/about.html')
+
+def test_futuristic(request):
+    """Test page to verify futuristic styles"""
+    return render(request, 'core/test_futuristic.html')
