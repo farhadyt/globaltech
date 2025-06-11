@@ -1,0 +1,469 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About Us - GlobalTech{% endblock %}
+
+{% block content %}
+<section class="about-hero py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h1 class="text-gradient mb-4">Pioneering the Future of Technology</h1>
+                <p class="lead text-light mb-4">
+                    Since our founding, GlobalTech has been at the forefront of digital transformation, 
+                    helping organizations harness the power of emerging technologies to achieve their goals.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-award text-primary"></i>
+                        <span>15+ Years of Excellence</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-globe text-primary"></i>
+                        <span>Global Reach, Local Expertise</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-users text-primary"></i>
+                        <span>250+ Technology Experts</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="about-visual">
+                    <canvas id="about-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mission-vision py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To empower organizations with innovative technology solutions that drive growth, 
+                    enhance security, and create sustainable competitive advantages in the digital age.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be the global leader in enterprise technology transformation, recognized for 
+                    our innovation, expertise, and commitment to client success.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Excellence, Innovation, Integrity, and Collaboration guide everything we do. 
+                    We believe in building lasting partnerships based on trust and mutual success.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="expertise-areas py-5 bg-dark">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title text-light">Areas of Expertise</h2>
+            <p class="section-subtitle text-light-gray">Deep technical knowledge across critical technology domains</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h4>Cloud Architecture</h4>
+                    <div class="expertise-level">
+                        <div class="level-bar" style="width: 95%"></div>
+                    </div>
+                    <span class="level-text">95% Mastery</span>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Cybersecurity</h4>
+                    <div class="expertise-level">
+                        <div class="level-bar" style="width: 98%"></div>
+                    </div>
+                    <span class="level-text">98% Mastery</span>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h4>AI & Analytics</h4>
+                    <div class="expertise-level">
+                        <div class="level-bar" style="width: 92%"></div>
+                    </div>
+                    <span class="level-text">92% Mastery</span>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="expertise-card">
+                    <div class="expertise-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h4>Infrastructure</h4>
+                    <div class="expertise-level">
+                        <div class="level-bar" style="width: 96%"></div>
+                    </div>
+                    <span class="level-text">96% Mastery</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="company-timeline py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">Our Journey</h2>
+            <p class="section-subtitle">Milestones in our technology leadership</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <h4>Foundation</h4>
+                    <p>GlobalTech founded with a vision to revolutionize enterprise IT infrastructure</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <h4>Cloud Pioneer</h4>
+                    <p>First in the region to offer comprehensive cloud migration services</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-content">
+                    <h4>Security Innovation</h4>
+                    <p>Launched advanced cybersecurity division with AI-powered threat detection</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-left">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <h4>Digital Transformation</h4>
+                    <p>Helped 500+ companies navigate digital transformation during global challenges</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h4>AI Integration</h4>
+                    <p>Leading the integration of AI and emerging technologies in enterprise solutions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="certifications py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">Certifications & Partnerships</h2>
+            <p class="section-subtitle">Recognized expertise from industry leaders</p>
+        </div>
+        
+        <div class="row align-items-center">
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="cert-logo">AWS Partner</div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="cert-logo">Microsoft Gold</div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="cert-logo">Google Cloud</div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="400">
+                <div class="cert-logo">ISO 27001</div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="500">
+                <div class="cert-logo">VMware</div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 mb-4" data-aos="zoom-in" data-aos-delay="600">
+                <div class="cert-logo">Cisco</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.about-hero {
+    background: var(--gradient-dark);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.highlight-item i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.about-visual {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#about-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.mission-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+}
+
+.mission-icon i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.expertise-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.expertise-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.expertise-icon i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.expertise-card h4 {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.expertise-level {
+    background: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.level-bar {
+    height: 100%;
+    background: var(--gradient-primary);
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.level-text {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-primary);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-year {
+    background: var(--gradient-primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 100px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 30px;
+    flex: 1;
+    max-width: 300px;
+}
+
+.cert-logo {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--text-dark);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.cert-logo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item {
+        flex-direction: row !important;
+    }
+    
+    .timeline-year {
+        min-width: 80px;
+        font-size: 0.9rem;
+    }
+    
+    .timeline-content {
+        margin-left: 40px;
+        margin-right: 0;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// About page canvas animation
+function initAboutCanvas() {
+    const canvas = document.getElementById('about-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    
+    let time = 0;
+    
+    function drawAboutAnimation() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw company growth visualization
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        
+        // Main company circle
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, 50 + Math.sin(time) * 10, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 212, 255, 0.3)';
+        ctx.fill();
+        ctx.strokeStyle = '#00d4ff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        
+        // Orbiting service circles
+        for (let i = 0; i < 6; i++) {
+            const angle = (time + i * Math.PI / 3);
+            const x = centerX + Math.cos(angle) * 120;
+            const y = centerY + Math.sin(angle) * 80;
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${i * 40}, 255, ${255 - i * 30}, 0.5)`;
+            ctx.fill();
+        }
+        
+        time += 0.02;
+        requestAnimationFrame(drawAboutAnimation);
+    }
+    
+    drawAboutAnimation();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initAboutCanvas, 500);
+});
+</script>
+{% endblock %} 

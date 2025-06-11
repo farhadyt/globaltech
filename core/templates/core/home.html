@@ -1,0 +1,251 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ company_name }} - {{ tagline }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    #hero-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section with 3D Background -->
+<section id="hero" class="hero-section position-relative overflow-hidden">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-content">
+                    <h1 class="hero-title mb-4">
+                        <span class="text-gradient">{{ company_name }}</span>
+                        <br>
+                        <span class="typing-text">Shaping Tomorrow's Digital Infrastructure</span>
+                    </h1>
+                    <p class="hero-subtitle mb-4">
+                        {{ tagline }} - From AI-powered automation to quantum-ready security, 
+                        we architect the technologies that define the future.
+                    </p>
+                    <div class="hero-stats mb-4">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <div class="stat-number" data-count="500">0</div>
+                                <div class="stat-label">Projects Delivered</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="stat-number" data-count="99">0</div>
+                                <div class="stat-label">Uptime %</div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div class="stat-number" data-count="24">0</div>
+                                <div class="stat-label">Countries Served</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary btn-lg me-3 pulse-btn">
+                            <i class="fas fa-rocket me-2"></i>Explore Solutions
+                        </a>
+                        <a href="{% url 'core:contact' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-comments me-2"></i>Start Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000">
+                <div class="hero-visual">
+                    <div class="floating-elements">
+                        <div class="floating-card server-card">
+                            <i class="fas fa-server"></i>
+                            <span>99.9% Uptime</span>
+                        </div>
+                        <div class="floating-card security-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>AI-Powered Security</span>
+                        </div>
+                        <div class="floating-card cloud-card">
+                            <i class="fas fa-cloud"></i>
+                            <span>Multi-Cloud Ready</span>
+                        </div>
+                        <div class="floating-card analytics-card">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Real-time Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-arrow"></div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">Advanced IT Solutions</h2>
+            <p class="section-subtitle">Comprehensive technology services designed for the digital-first enterprise</p>
+        </div>
+        
+        <div class="services-grid">
+            {% for key, service in services.items %}
+            <div class="service-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}" data-service="{{ key }}">
+                <div class="service-icon">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                <h3 class="service-title">{{ service.title }}</h3>
+                <p class="service-description">{{ service.description }}</p>
+                <div class="service-features">
+                    {% for subservice in service.subservices %}
+                    <span class="feature-tag">{{ subservice }}</span>
+                    {% endfor %}
+                </div>
+                <a href="#" class="service-link">
+                    Learn More <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Technology Stack Showcase -->
+<section class="tech-stack-section py-5 bg-dark">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h2 class="text-light mb-4">Cutting-Edge Technology Stack</h2>
+                <p class="text-light-gray mb-4">
+                    We leverage the latest technologies and industry best practices to deliver 
+                    solutions that are not just current, but future-ready.
+                </p>
+                <div class="tech-categories">
+                    <div class="tech-category">
+                        <h5 class="text-primary">Cloud Platforms</h5>
+                        <div class="tech-tags">
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Azure</span>
+                            <span class="tech-tag">Google Cloud</span>
+                            <span class="tech-tag">Oracle Cloud</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h5 class="text-primary">AI/ML Frameworks</h5>
+                        <div class="tech-tags">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">OpenAI</span>
+                            <span class="tech-tag">Hugging Face</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h5 class="text-primary">Security Tools</h5>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Zero Trust</span>
+                            <span class="tech-tag">SIEM</span>
+                            <span class="tech-tag">EDR</span>
+                            <span class="tech-tag">SOAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="tech-visualization">
+                    <canvas id="tech-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Statistics -->
+<section class="stats-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="250">0</h3>
+                        <p class="stat-label">Enterprise Clients</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="10000">0</h3>
+                        <p class="stat-label">Servers Managed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="99.97">0</h3>
+                        <p class="stat-label">Security Score</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="15">0</h3>
+                        <p class="stat-label">Min Response Time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section py-5 bg-gradient">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <h2 class="cta-title mb-4">Ready to Transform Your IT Infrastructure?</h2>
+                <p class="cta-subtitle mb-4">
+                    Join industry leaders who trust GlobalTech to architect their digital future. 
+                    Our expert consultants are ready to design a solution tailored to your unique needs.
+                </p>
+                <div class="cta-actions">
+                    <a href="{% url 'core:contact' %}" class="btn btn-light btn-lg me-3">
+                        <i class="fas fa-calendar-alt me-2"></i>Schedule Consultation
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-download me-2"></i>Download Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/hero-3d.js' %}"></script>
+<script src="{% static 'js/animations.js' %}"></script>
+{% endblock %} 

@@ -1,0 +1,225 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - GlobalTech{% endblock %}
+
+{% block content %}
+<section class="contact-hero py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h1 class="text-gradient mb-4">Let's Build Your Digital Future</h1>
+                <p class="lead text-light mb-4">
+                    Ready to transform your IT infrastructure? Our expert consultants are here to 
+                    discuss your unique challenges and architect solutions that drive results.
+                </p>
+                <div class="contact-stats">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="contact-stat">
+                                <i class="fas fa-clock text-primary"></i>
+                                <span>24/7 Support</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="contact-stat">
+                                <i class="fas fa-users text-primary"></i>
+                                <span>Expert Team</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="contact-form-container">
+                    <form class="consultation-form" method="post">
+                        {% csrf_token %}
+                        <h3 class="form-title mb-4">Schedule Your Consultation</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" name="phone" placeholder="Phone Number">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="company" placeholder="Company Name">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <select class="form-control" name="service" required>
+                                    <option value="">Select Service Interest</option>
+                                    <option value="infrastructure">Infrastructure Solutions</option>
+                                    <option value="cybersecurity">Cybersecurity Services</option>
+                                    <option value="cloud">Cloud Transformation</option>
+                                    <option value="analytics">Data Analytics</option>
+                                    <option value="emerging">Emerging Technologies</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="4" placeholder="Tell us about your project or challenges..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Send Consultation Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-info py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4>Visit Our Office</h4>
+                    <p>28 May Street, Baku<br>Azerbaijan AZ1000</p>
+                    <a href="#" class="contact-link">Get Directions</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>Call Us</h4>
+                    <p>+994 12 XXX XX XX<br>+994 XX XXX XX XX</p>
+                    <a href="tel:+994123xxxxx" class="contact-link">Call Now</a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4>Email Us</h4>
+                    <p>info@globaltech.az<br>support@globaltech.az</p>
+                    <a href="mailto:info@globaltech.az" class="contact-link">Send Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.contact-hero {
+    background: var(--gradient-dark);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.contact-stat {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.contact-stat i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.contact-form-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-title {
+    color: var(--text-light);
+    text-align: center;
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: var(--text-light);
+    padding: 12px 20px;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 212, 255, 0.25);
+    color: var(--text-light);
+}
+
+.form-control::placeholder {
+    color: var(--text-gray);
+}
+
+.contact-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+}
+
+.contact-icon i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.contact-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-link:hover {
+    color: var(--secondary-color);
+}
+</style>
+{% endblock %} 
