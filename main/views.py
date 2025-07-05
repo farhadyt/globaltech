@@ -250,7 +250,7 @@ def index(request):
             @keyframes textFadeIn { from { opacity:0; } to { opacity:1; } }
             @keyframes sphereShrink {
                 from { transform: translate(-50%, -50%) scale(1); }
-                to   { transform: translate(-50%, -50%) scale(0.38); } /* 0.38 ≈ “O” boyu */
+                to   { transform: translate(-50%, -50%) scale(0.38); } /* 0.38 ≈ "O" boyu */
             }
 
             /* --- Xüsusi kiçik ekranlar üçün düzəlişlər --- */
@@ -292,7 +292,7 @@ def index(request):
             <!-- Brend wrapper - sözlər -->
             <div class="brand-wrapper" id="brand-wrapper">
                 <div class="brand-text brand-gl" id="brand-gl">GL</div>
-                <div class="brand-text brand-baltech" id="brand-baltech">BALTECH</div>
+                <div class="brand-text brand-baltech" id="brand-baltech">OBALTECH</div>
             </div>
 
             <!-- Boot mətnləri -->
@@ -362,10 +362,193 @@ def index(request):
                 setTimeout(() => {
                     document.body.style.transition = 'opacity 1s ease-out';
                     document.body.style.opacity = '0';
-                    setTimeout(() => window.location.href = '/main/', 1000);
+                    setTimeout(() => window.location.href = '/home/', 1000);  // ✅ DÜZGÜN URL
                 }, totalDelay + 5000);
             });
         </script>
     </body>
     </html>
     """)
+
+
+def home(request):
+    """Home page with server room hero section"""
+    services = {
+        'it_audit': {
+            'title': 'IT Audit',
+            'icon': 'fas fa-clipboard-check',
+            'description': 'Comprehensive assessment of IT systems, controls, and procedures',
+            'subservices': [
+                {
+                    'name': 'Assessing Internal Controls',
+                    'description': 'Evaluation of current controls to ensure efficient processes and protection of resources.'
+                },
+                {
+                    'name': 'Compliance Verification', 
+                    'description': 'Ensuring alignment with regulatory and internal compliance requirements.'
+                },
+                {
+                    'name': 'Risk Assessment',
+                    'description': 'Identifying, analyzing, and prioritizing potential threats.'
+                },
+                {
+                    'name': 'Data Integrity and Security',
+                    'description': 'Ensuring accuracy and safeguarding of your business data.'
+                },
+                {
+                    'name': 'System Performance and Efficiency',
+                    'description': 'Evaluating system responsiveness, reliability, and capacity.'
+                }
+            ]
+        },
+        'network': {
+            'title': 'Network',
+            'icon': 'fas fa-network-wired',
+            'description': 'Advanced networking solutions for enterprise environments',
+            'subservices': [
+                {
+                    'name': 'Enterprise Networks',
+                    'description': 'Building scalable, secure, and high-performing enterprise-grade networks.'
+                },
+                {
+                    'name': 'Mobility and Wireless',
+                    'description': 'Providing secure wireless solutions to enable mobile productivity.'
+                }
+            ]
+        },
+        'data_centre': {
+            'title': 'Data Centre',
+            'icon': 'fas fa-server',
+            'description': 'Modern data center solutions for optimal performance',
+            'subservices': [
+                {
+                    'name': 'Server and Storage Systems',
+                    'description': 'Robust infrastructure for optimized data processing and storage.'
+                },
+                {
+                    'name': 'Virtualization',
+                    'description': 'Resource efficiency through virtualized environments.'
+                },
+                {
+                    'name': 'Hybrid Cloud',
+                    'description': 'Flexible mix of private and public cloud for workload optimization.'
+                },
+                {
+                    'name': 'Public Cloud',
+                    'description': 'Deploy and scale on-demand with leading cloud providers.'
+                }
+            ]
+        },
+        'security': {
+            'title': 'Security',
+            'icon': 'fas fa-shield-alt',
+            'description': 'Comprehensive security solutions for your organization',
+            'subservices': [
+                {
+                    'name': 'Infrastructure Security',
+                    'description': 'Protecting foundational hardware and software systems.'
+                },
+                {
+                    'name': 'Networking Security',
+                    'description': 'Securing internal/external traffic with firewalls and IDS/IPS.'
+                },
+                {
+                    'name': 'Data Security',
+                    'description': 'Safeguarding data from unauthorized access or breaches.'
+                }
+            ]
+        },
+        'cyber_security': {
+            'title': 'Cyber Security',
+            'icon': 'fas fa-user-shield',
+            'description': 'Next-generation cybersecurity to protect against emerging threats',
+            'subservices': [
+                {
+                    'name': 'Cyber Threat Intelligence',
+                    'description': 'Proactive insights to detect and mitigate cyber risks.'
+                },
+                {
+                    'name': 'Data Loss Prevention',
+                    'description': 'Preventing sensitive data from being lost, misused, or accessed.'
+                },
+                {
+                    'name': 'EndPoint Protection',
+                    'description': 'Securing all devices that access your network.'
+                },
+                {
+                    'name': 'SIEM Solution',
+                    'description': 'Centralized real-time threat monitoring and analytics.'
+                },
+                {
+                    'name': 'Security Operations Center (SOC)',
+                    'description': '24/7 monitoring and response for cybersecurity events.'
+                }
+            ]
+        },
+        'software_development': {
+            'title': 'Software Development',
+            'icon': 'fas fa-code',
+            'description': 'Custom software solutions tailored to your business needs',
+            'subservices': [
+                {
+                    'name': 'Software Development',
+                    'description': 'Custom applications built to meet your unique business needs.'
+                },
+                {
+                    'name': 'PLC Development',
+                    'description': 'Industrial automation and control system programming.'
+                },
+                {
+                    'name': 'DevOps Consulting',
+                    'description': 'Continuous integration and delivery for faster deployment.'
+                }
+            ]
+        },
+        'it_consultancy': {
+            'title': 'IT Consultancy',
+            'icon': 'fas fa-chalkboard-teacher',
+            'description': 'Strategic IT guidance to transform your business',
+            'subservices': [
+                {
+                    'name': 'System Analysis and Design',
+                    'description': 'Tailored analysis and architecture for IT systems.'
+                },
+                {
+                    'name': 'IT Strategy',
+                    'description': 'Long-term planning aligned with your business goals.'
+                },
+                {
+                    'name': 'IT Project Management',
+                    'description': 'Delivering successful IT initiatives on time and budget.'
+                },
+                {
+                    'name': 'Security and Risk Management',
+                    'description': 'Mitigating risk and ensuring compliance.'
+                },
+                {
+                    'name': 'Infrastructure and Network Planning',
+                    'description': 'Designing scalable, future-ready infrastructure.'
+                },
+                {
+                    'name': 'Training and Change Management',
+                    'description': 'Supporting adoption and organizational transformation.'
+                },
+                {
+                    'name': 'IT Governance',
+                    'description': 'Policies and frameworks for aligned IT management.'
+                },
+                {
+                    'name': 'Process Automation Services',
+                    'description': 'Streamlining operations through intelligent automation.'
+                }
+            ]
+        }
+    }
+    
+    context = {
+        'services': services,
+        'company_name': 'GlobalTech',
+        'tagline': 'Innovative IT Solutions for the Digital Future'
+    }
+    
+    return render(request, 'main/home.html', context)
