@@ -108,7 +108,7 @@ def index(request):
                 position: absolute;
             }
             /* ---- Yeni fade-in effekti ---- */
-            .brand-text.visible { animation: textFadeIn 1.2s forwards ease-out; }
+            .brand-text.visible { animation: textFadeIn 0.8s forwards ease-out; }
 
             .brand-gl  { right: calc(46% + var(--nexus-size) / 2 + var(--spacing-scale)); }
             .brand-baltech { left: calc(47% + var(--nexus-size) / 2 + var(--spacing-scale)); }
@@ -122,7 +122,7 @@ def index(request):
                 z-index: 5;
             }
             /* ---- Kürənin kiçilmə animasiyası ---- */
-            .access-ring-wrapper.shrink { animation: sphereShrink 1.2s forwards ease-in-out; }
+            .access-ring-wrapper.shrink { animation: sphereShrink 0.8s forwards ease-in-out; }
 
             /* --- Holoqrafik kürə --- */
             .hologram-nexus {
@@ -196,7 +196,7 @@ def index(request):
                 border: max(0.4vw, 4px) solid transparent;
                 border-top-color: var(--secondary-glow);
                 border-right-color: var(--secondary-glow);
-                animation: access-spin 1.5s linear infinite;
+                animation: access-spin 1s linear infinite;
                 box-shadow: 0 0 3px var(--secondary-glow);
             }
 
@@ -247,7 +247,10 @@ def index(request):
             @keyframes line-appear { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
             
             /* ---- Yeni animasiyalar ---- */
-            @keyframes textFadeIn { from { opacity:0; } to { opacity:1; } }
+            @keyframes textFadeIn { 
+                from { opacity:0; transform: scale(0.8); } 
+                to { opacity:1; transform: scale(1); } 
+            }
             @keyframes sphereShrink {
                 from { transform: translate(-50%, -50%) scale(1); }
                 to   { transform: translate(-50%, -50%) scale(0.38); } /* 0.38 ≈ "O" boyu */
@@ -292,7 +295,7 @@ def index(request):
             <!-- Brend wrapper - sözlər -->
             <div class="brand-wrapper" id="brand-wrapper">
                 <div class="brand-text brand-gl" id="brand-gl">GL</div>
-                <div class="brand-text brand-baltech" id="brand-baltech">OBALTECH</div>
+                <div class="brand-text brand-baltech" id="brand-baltech">BALTECH</div>
             </div>
 
             <!-- Boot mətnləri -->
@@ -323,12 +326,12 @@ def index(request):
                 const ringWrapper  = document.getElementById('access-ring-wrapper');
 
                 const sequence = [
-                    { text: 'DATACENTER_CORE.initialize() <span class="status-ok">[ACTIVE]</span>', delay: 800 },
-                    { text: 'SECURITY_PROTOCOLS.authenticate() <span class="status-ok">[VERIFIED]</span>', delay: 1200 },
-                    { text: 'FIREWALL_MATRIX.scanThreats() <span class="status-ok">[CLEAN]</span>', delay: 1000 },
-                    { text: 'CLOUD_INFRASTRUCTURE.connect() <span class="status-ok">[STABLE]</span>', delay: 900 },
-                    { text: 'NEURAL_NETWORK.loadBalance() <span class="status-ok">[OPTIMIZED]</span>', delay: 700 },
-                    { text: 'ACCESS_CONTROL.grantPermission() <span class="status-granted">[GRANTED]</span>', delay: 600 }
+                    { text: 'DATACENTER_CORE.initialize() <span class="status-ok">[ACTIVE]</span>', delay: 400 },
+                    { text: 'SECURITY_PROTOCOLS.authenticate() <span class="status-ok">[VERIFIED]</span>', delay: 500 },
+                    { text: 'FIREWALL_MATRIX.scanThreats() <span class="status-ok">[CLEAN]</span>', delay: 400 },
+                    { text: 'CLOUD_INFRASTRUCTURE.connect() <span class="status-ok">[STABLE]</span>', delay: 400 },
+                    { text: 'NEURAL_NETWORK.loadBalance() <span class="status-ok">[OPTIMIZED]</span>', delay: 300 },
+                    { text: 'ACCESS_CONTROL.grantPermission() <span class="status-granted">[GRANTED]</span>', delay: 400 }
                 ];
 
                 let totalDelay = 0;
@@ -343,27 +346,27 @@ def index(request):
                 });
 
                 /* --- Giriş halqasını aktiv et --- */
-                setTimeout(() => accessProgressEl.classList.add('active'), 2000);
+                setTimeout(() => accessProgressEl.classList.add('active'), 1000);
 
                 /* --- Boot bitdikdən sonra animasiya --- */
                 setTimeout(() => {
-                    bootSequenceEl.style.transition = 'opacity 1s';
+                    bootSequenceEl.style.transition = 'opacity 0.5s';
                     bootSequenceEl.style.opacity = '0';
 
                     /* Kürəni kiçilt və mətni fade-in et */
                     ringWrapper.classList.add('shrink');
                     setTimeout(() => {
                         brandGl.classList.add('visible');
-                        setTimeout(() => brandBaltech.classList.add('visible'), 300);
-                    }, 200);
-                }, totalDelay + 1000);
+                        setTimeout(() => brandBaltech.classList.add('visible'), 200);
+                    }, 100);
+                }, totalDelay + 500);
 
                 /* --- Növbəti səhifəyə yönləndirmə --- */
                 setTimeout(() => {
-                    document.body.style.transition = 'opacity 1s ease-out';
+                    document.body.style.transition = 'opacity 0.5s ease-out';
                     document.body.style.opacity = '0';
-                    setTimeout(() => window.location.href = '/home/', 1000);  // ✅ DÜZGÜN URL
-                }, totalDelay + 5000);
+                    setTimeout(() => window.location.href = '/home/', 500);
+                }, totalDelay + 1800); // Brand text görünəndən 1 saniyə sonra
             });
         </script>
     </body>
@@ -552,3 +555,28 @@ def home(request):
     }
     
     return render(request, 'main/home.html', context)
+
+
+def services(request):
+    """Services page"""
+    return render(request, 'main/services.html')
+
+
+def projects(request):
+    """Projects page"""
+    return render(request, 'main/projects.html')
+
+
+def partners(request):
+    """Partners page"""
+    return render(request, 'main/partners.html')
+
+
+def about(request):
+    """About page"""
+    return render(request, 'main/about.html')
+
+
+def contact(request):
+    """Contact page"""
+    return render(request, 'main/contact.html')
