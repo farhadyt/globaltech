@@ -1,0 +1,586 @@
+/* ==============================================
+   Content Switcher & Module Styles
+   Professional IT Infrastructure Design
+   ============================================== */
+
+/* CSS Variables for original design */
+:root {
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --text-muted: #8892a7;
+    --text-highlight: #80deea;
+}
+
+/* Service Modules Grid */
+.service-modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: clamp(2rem, 4vh, 3rem);
+}
+
+/* Service Module - Original Design with Animation */
+.service-module {
+    position: relative;
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    border-radius: 28px;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all var(--transition-slow);
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* Initial state for animation */
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    
+    /* Convex effect with soft shadows */
+    box-shadow: 
+        15px 15px 30px rgba(0, 0, 0, 0.2),
+        -15px -15px 30px rgba(255, 255, 255, 0.02),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+        inset -2px -2px 5px rgba(0, 0, 0, 0.15);
+    
+    transform: translateZ(0);
+}
+
+/* Glass effect overlay */
+.module-glass-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    opacity: 0.3;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.service-module:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 
+        18px 18px 35px rgba(0, 0, 0, 0.25),
+        -18px -18px 35px rgba(255, 255, 255, 0.03),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.12),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.18),
+        0 12px 25px rgba(0, 188, 212, 0.1);
+    
+    border-color: rgba(0, 188, 212, 0.3);
+}
+
+/* Animation delays for modules - Fixed order */
+.service-module:nth-child(1) { animation-delay: 0.1s; }
+.service-module:nth-child(2) { animation-delay: 0.2s; }
+.service-module:nth-child(3) { animation-delay: 0.3s; }
+.service-module:nth-child(4) { animation-delay: 0.4s; }
+.service-module:nth-child(5) { animation-delay: 0.5s; }
+.service-module:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes moduleSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Module Content */
+.module-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Modern Icon Wrapper */
+.module-icon-wrapper {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto clamp(1rem, 2vh, 1.5rem);
+}
+
+.icon-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, 
+        rgba(0, 188, 212, 0.15) 0%, 
+        rgba(33, 150, 243, 0.1) 100%
+    );
+    border-radius: 20px;
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.module-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+    color: var(--accent-cyan);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.service-module[data-service="cybersecurity"] .module-icon {
+    color: var(--accent-blue);
+}
+
+.service-module[data-service="hardware-solutions"] .module-icon {
+    color: var(--accent-green);
+}
+
+.service-module[data-service="innovation-lab"] .module-icon {
+    color: #9c27b0;
+}
+
+.service-module:hover .icon-background {
+    transform: rotate(45deg) scale(1.1);
+    background: linear-gradient(145deg, 
+        rgba(0, 188, 212, 0.25) 0%, 
+        rgba(33, 150, 243, 0.2) 100%
+    );
+}
+
+.service-module:hover .module-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Module Title & Description */
+.module-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: clamp(0.3rem, 0.5vh, 0.5rem);
+    letter-spacing: 0.02em;
+}
+
+.module-description {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+    padding: 0 clamp(0.3rem, 0.5vw, 0.5rem);
+}
+
+/* Module Stats - Fixed Design */
+.module-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.8rem, 1.5vw, 1rem);
+    margin: clamp(0.8rem, 1.5vh, 1rem) 0;
+    padding: clamp(0.5rem, 1.2vh, 0.8rem);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: clamp(12px, 2vw, 16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.2rem, 0.5vh, 0.3rem);
+}
+
+.stat-value {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin: 0;
+    letter-spacing: 0.05em;
+    min-width: 3ch;
+    text-align: center;
+    line-height: 1;
+    /* Prevent text blur during animation */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translateZ(0);
+    will-change: content;
+}
+
+.stat-label {
+    font-size: clamp(0.6rem, 1.1vw, 0.7rem);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.2;
+}
+
+.stat-separator {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Module Status */
+.module-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.3rem, 0.5vw, 0.5rem);
+}
+
+.status-icon {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    box-shadow: 0 0 10px var(--accent-green);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status-icon.warning {
+    background: var(--accent-orange);
+    box-shadow: 0 0 10px var(--accent-orange);
+}
+
+.module-status .status-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Module Glow Effect */
+.module-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(0, 188, 212, 0.1) 0%, 
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-module:hover .module-glow {
+    opacity: 1;
+}
+
+/* Command Actions */
+.command-actions {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    flex-wrap: wrap;
+    margin-top: clamp(2rem, 4vh, 3rem);
+}
+
+.primary-action-btn,
+.secondary-action-btn {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1vw, 0.8rem);
+    padding: clamp(1rem, 1.5vh, 1.2rem) clamp(1.5rem, 3vw, 2rem);
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+    font-family: inherit;
+    opacity: 0;
+    animation: buttonSlideIn 0.8s ease-out 0.7s forwards;
+}
+
+.secondary-action-btn {
+    animation-delay: 0.9s;
+}
+
+@keyframes buttonSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.primary-action-btn {
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    color: var(--primary-dark);
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+}
+
+.primary-action-btn:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+}
+
+.secondary-action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(0, 188, 212, 0.5);
+    color: var(--accent-cyan);
+    backdrop-filter: blur(10px);
+}
+
+.secondary-action-btn:hover {
+    background: rgba(0, 188, 212, 0.1);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.2);
+}
+
+.btn-icon {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.btn-main {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btn-sub {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.primary-action-btn:hover .btn-glow,
+.secondary-action-btn:hover .btn-glow {
+    left: 100%;
+}
+
+/* Service module color variations */
+.service-module[data-service="cybersecurity"] .stat-value {
+    color: var(--accent-blue);
+}
+
+.service-module[data-service="hardware-solutions"] .stat-value {
+    color: var(--accent-green);
+}
+
+.service-module[data-service="innovation-lab"] .stat-value {
+    color: #9c27b0;
+}
+
+/* Additional color variations for new modules */
+.service-module[data-service="it-audit"] .module-icon,
+.service-module[data-service="it-audit"] .stat-value {
+    color: #00bcd4;
+}
+
+.service-module[data-service="network-solutions"] .module-icon,
+.service-module[data-service="network-solutions"] .stat-value {
+    color: #03a9f4;
+}
+
+.service-module[data-service="cloud-services"] .module-icon,
+.service-module[data-service="cloud-services"] .stat-value {
+    color: #2196f3;
+}
+
+.service-module[data-service="software-dev"] .module-icon,
+.service-module[data-service="software-dev"] .stat-value {
+    color: #4caf50;
+}
+
+.service-module[data-service="it-consulting"] .module-icon,
+.service-module[data-service="it-consulting"] .stat-value {
+    color: #ff9800;
+}
+
+.service-module[data-service="managed-services"] .module-icon,
+.service-module[data-service="managed-services"] .stat-value {
+    color: #9c27b0;
+}
+
+/* Animations */
+@keyframes statusPulse {
+    0%, 100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .service-modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(0.8rem, 2vw, 1rem);
+    }
+    
+    .service-module {
+        padding: clamp(1rem, 2.5vw, 1.5rem);
+        border-radius: 20px;
+    }
+    
+    .module-icon-wrapper {
+        width: 55px;
+        height: 55px;
+        margin-bottom: clamp(0.8rem, 1.5vh, 1rem);
+    }
+    
+    .module-icon {
+        font-size: 1.3rem;
+    }
+    
+    .module-title {
+        font-size: 0.95rem;
+    }
+    
+    .module-description {
+        font-size: 0.8rem;
+    }
+    
+    .stat-value {
+        font-size: 1rem;
+    }
+    
+    .command-actions {
+        gap: clamp(0.8rem, 1.5vw, 1rem);
+    }
+    
+    .primary-action-btn,
+    .secondary-action-btn {
+        padding: clamp(0.8rem, 1.5vh, 1rem) clamp(1rem, 2vw, 1.5rem);
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+    
+    .btn-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-main {
+        font-size: 0.85rem;
+    }
+    
+    .btn-sub {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(0.5rem, 1.5vw, 0.8rem);
+    }
+    
+    .service-module {
+        padding: clamp(0.8rem, 2vw, 1rem);
+        border-radius: 16px;
+    }
+    
+    .module-icon-wrapper {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .module-icon {
+        font-size: 1.1rem;
+    }
+    
+    .module-title {
+        font-size: 0.85rem;
+    }
+    
+    .module-description {
+        font-size: 0.75rem;
+        margin-bottom: clamp(0.8rem, 1.5vh, 1rem);
+    }
+    
+    .module-stats {
+        flex-direction: column;
+        gap: clamp(0.3rem, 0.5vh, 0.5rem);
+        padding: clamp(0.3rem, 0.8vh, 0.5rem);
+    }
+    
+    .stat-separator {
+        display: none;
+    }
+    
+    .stat-value {
+        font-size: 0.9rem;
+    }
+    
+    .stat-label {
+        font-size: 0.65rem;
+    }
+    
+    .command-actions {
+        flex-direction: column;
+        gap: clamp(0.5rem, 1vh, 0.8rem);
+    }
+    
+    .primary-action-btn,
+    .secondary-action-btn {
+        width: 100%;
+        padding: clamp(0.8rem, 1.5vh, 1rem);
+        min-width: unset;
+        font-size: 0.8rem;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .service-module {
+        border-width: 0.5px;
+    }
+}

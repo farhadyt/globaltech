@@ -15,7 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/hero-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero-responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/content-switcher.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services-section.css' %}">
 </head>
 <body>
     <!-- Navigation Header -->
@@ -42,13 +44,13 @@
                     <i class="fas fa-cogs"></i>
                     <span>Services</span>
                 </a>
-                <a href="#" class="nav-item" data-section="projects">
-                    <i class="fas fa-project-diagram"></i>
-                    <span>Projects</span>
+                <a href="#" class="nav-item" data-section="infrastructure">
+                    <i class="fas fa-server"></i>
+                    <span>Infrastructure</span>
                 </a>
-                <a href="#" class="nav-item" data-section="partners">
-                    <i class="fas fa-handshake"></i>
-                    <span>Partners</span>
+                <a href="#" class="nav-item" data-section="security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
                 </a>
                 <a href="#" class="nav-item" data-section="about">
                     <i class="fas fa-info-circle"></i>
@@ -75,10 +77,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Main Content -->
-    <section class="hero-section">
-        
-        <!-- Background Environment -->
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <!-- Background Environment (Stays constant) -->
         <div class="hero-background">
             <div class="gradient-orb orb-1"></div>
             <div class="gradient-orb orb-2"></div>
@@ -86,182 +87,189 @@
             <div class="gradient-orb orb-4"></div>
         </div>
         
-        <!-- Central Command Interface -->
-        <div class="command-interface">
-            
-            <!-- Hero Content Header -->
-            <div class="interface-header">
-                <div class="system-status-indicator">
-                    <div class="status-dot online"></div>
-                    <span class="status-text">ALL SYSTEMS OPERATIONAL</span>
-                </div>
-                
-                <h1 class="hero-title">
-                    <span class="title-primary" data-text="ENTERPRISE">ENTERPRISE</span>
-                    <span class="title-secondary" data-text="COMMAND CENTER">COMMAND CENTER</span>
-                </h1>
-                
-                <p class="hero-description">
-                    Expert IT team preparing your business for the digital future. 
-                    <span class="highlight">24/7 monitoring</span> and 
-                    <span class="highlight">enterprise-level security</span>.
-                </p>
+        <!-- Content Container -->
+        <div class="content-container" id="contentContainer">
+            <!-- Content Loading Overlay -->
+            <div class="content-loader" id="contentLoader">
+                <div class="loader-spinner"></div>
+                <div class="loader-text">Loading...</div>
             </div>
             
-            <!-- Service Command Modules - New Modern Design -->
-            <div class="service-modules-grid">
-                
-                <div class="service-module" data-service="it-infrastructure">
-                    <div class="module-glass-effect"></div>
-                    <div class="module-content">
-                        <div class="module-icon-wrapper">
-                            <div class="icon-background"></div>
-                            <i class="fas fa-server module-icon"></i>
-                        </div>
-                        <h3 class="module-title">IT Infrastructure</h3>
-                        <p class="module-description">Server, storage, virtualization and cloud solutions</p>
-                        <div class="module-stats">
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="150">0</span>
-                                <span class="stat-label">Servers</span>
+            <!-- Dynamic Content Area -->
+            <div class="dynamic-content" id="dynamicContent">
+                <!-- Home Content (Default) -->
+                <div class="content-section active" id="home-content">
+                    <div class="command-interface">
+                        <!-- Hero Content Header -->
+                        <div class="interface-header">
+                            <div class="system-status-indicator">
+                                <div class="status-dot online"></div>
+                                <span class="status-text">ALL SYSTEMS OPERATIONAL</span>
                             </div>
-                            <div class="stat-separator"></div>
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="99">0</span>
-                                <span class="stat-label">% Uptime</span>
+                            
+                            <h1 class="hero-title">
+                                <span class="title-primary">ENTERPRISE</span>
+                                <span class="title-secondary">COMMAND CENTER</span>
+                            </h1>
+                            
+                            <p class="hero-description">
+                                Expert IT team preparing your business for the digital future. 
+                                <span class="highlight">24/7 monitoring</span> and 
+                                <span class="highlight">enterprise-level security</span>.
+                            </p>
+                        </div>
+                        
+                        <!-- Service Command Modules -->
+                        <div class="service-modules-grid">
+                            <div class="service-module" data-service="it-infrastructure">
+                                <div class="module-glass-effect"></div>
+                                <div class="module-content">
+                                    <div class="module-icon-wrapper">
+                                        <div class="icon-background"></div>
+                                        <i class="fas fa-server module-icon"></i>
+                                    </div>
+                                    <h3 class="module-title">IT Infrastructure</h3>
+                                    <p class="module-description">Server, storage, virtualization and cloud solutions</p>
+                                    <div class="module-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="28">0</span>
+                                            <span class="stat-label">Servers</span>
+                                        </div>
+                                        <div class="stat-separator"></div>
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="99">0</span>
+                                            <span class="stat-label">% Uptime</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-status">
+                                        <span class="status-icon active"></span>
+                                        <span class="status-text">Active</span>
+                                    </div>
+                                </div>
+                                <div class="module-glow"></div>
+                            </div>
+                            
+                            <div class="service-module" data-service="cybersecurity">
+                                <div class="module-glass-effect"></div>
+                                <div class="module-content">
+                                    <div class="module-icon-wrapper">
+                                        <div class="icon-background"></div>
+                                        <i class="fas fa-shield-alt module-icon"></i>
+                                    </div>
+                                    <h3 class="module-title">Cybersecurity</h3>
+                                    <p class="module-description">SOC, firewall, penetration testing and compliance</p>
+                                    <div class="module-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="68">0</span>
+                                            <span class="stat-label">Monitoring</span>
+                                        </div>
+                                        <div class="stat-separator"></div>
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="100">0</span>
+                                            <span class="stat-label">% Secure</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-status">
+                                        <span class="status-icon active"></span>
+                                        <span class="status-text">Protected</span>
+                                    </div>
+                                </div>
+                                <div class="module-glow"></div>
+                            </div>
+                            
+                            <div class="service-module" data-service="hardware-solutions">
+                                <div class="module-glass-effect"></div>
+                                <div class="module-content">
+                                    <div class="module-icon-wrapper">
+                                        <div class="icon-background"></div>
+                                        <i class="fas fa-microchip module-icon"></i>
+                                    </div>
+                                    <h3 class="module-title">Hardware Solutions</h3>
+                                    <p class="module-description">Enterprise equipment and technical support</p>
+                                    <div class="module-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="80">0</span>
+                                            <span class="stat-label">Projects</span>
+                                        </div>
+                                        <div class="stat-separator"></div>
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="24">0</span>
+                                            <span class="stat-label">Hr Support</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-status">
+                                        <span class="status-icon active"></span>
+                                        <span class="status-text">Online</span>
+                                    </div>
+                                </div>
+                                <div class="module-glow"></div>
+                            </div>
+                            
+                            <div class="service-module" data-service="innovation-lab">
+                                <div class="module-glass-effect"></div>
+                                <div class="module-content">
+                                    <div class="module-icon-wrapper">
+                                        <div class="icon-background"></div>
+                                        <i class="fas fa-brain module-icon"></i>
+                                    </div>
+                                    <h3 class="module-title">Innovation Lab</h3>
+                                    <p class="module-description">AI, IoT, blockchain and smart city solutions</p>
+                                    <div class="module-stats">
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="6">0</span>
+                                            <span class="stat-label">AI Models</span>
+                                        </div>
+                                        <div class="stat-separator"></div>
+                                        <div class="stat-item">
+                                            <span class="stat-value" data-count="9">0</span>
+                                            <span class="stat-label">Patents</span>
+                                        </div>
+                                    </div>
+                                    <div class="module-status">
+                                        <span class="status-icon warning"></span>
+                                        <span class="status-text">Innovating</span>
+                                    </div>
+                                </div>
+                                <div class="module-glow"></div>
                             </div>
                         </div>
-                        <div class="module-status">
-                            <span class="status-icon active"></span>
-                            <span class="status-text">Active</span>
+                        
+                        <!-- Command Actions -->
+                        <div class="command-actions">
+                            <button class="primary-action-btn" data-section="services">
+                                <div class="btn-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="btn-content">
+                                    <span class="btn-main">Explore Our Services</span>
+                                    <span class="btn-sub">Full portfolio</span>
+                                </div>
+                                <div class="btn-glow"></div>
+                            </button>
+                            
+                            <button class="secondary-action-btn" data-section="contact">
+                                <div class="btn-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="btn-content">
+                                    <span class="btn-main">Get Consultation</span>
+                                    <span class="btn-sub">Free analysis</span>
+                                </div>
+                                <div class="btn-glow"></div>
+                            </button>
                         </div>
                     </div>
-                    <div class="module-glow"></div>
                 </div>
                 
-                <div class="service-module" data-service="cybersecurity">
-                    <div class="module-glass-effect"></div>
-                    <div class="module-content">
-                        <div class="module-icon-wrapper">
-                            <div class="icon-background"></div>
-                            <i class="fas fa-shield-alt module-icon"></i>
-                        </div>
-                        <h3 class="module-title">Cybersecurity</h3>
-                        <p class="module-description">SOC, firewall, penetration testing and compliance</p>
-                        <div class="module-stats">
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="247">0</span>
-                                <span class="stat-label">Monitoring</span>
-                            </div>
-                            <div class="stat-separator"></div>
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="100">0</span>
-                                <span class="stat-label">% Secure</span>
-                            </div>
-                        </div>
-                        <div class="module-status">
-                            <span class="status-icon active"></span>
-                            <span class="status-text">Protected</span>
-                        </div>
-                    </div>
-                    <div class="module-glow"></div>
-                </div>
-                
-                <div class="service-module" data-service="hardware-solutions">
-                    <div class="module-glass-effect"></div>
-                    <div class="module-content">
-                        <div class="module-icon-wrapper">
-                            <div class="icon-background"></div>
-                            <i class="fas fa-microchip module-icon"></i>
-                        </div>
-                        <h3 class="module-title">Hardware Solutions</h3>
-                        <p class="module-description">Enterprise equipment and technical support</p>
-                        <div class="module-stats">
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="500">0</span>
-                                <span class="stat-label">Projects</span>
-                            </div>
-                            <div class="stat-separator"></div>
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="24">0</span>
-                                <span class="stat-label">Hr Support</span>
-                            </div>
-                        </div>
-                        <div class="module-status">
-                            <span class="status-icon active"></span>
-                            <span class="status-text">Online</span>
-                        </div>
-                    </div>
-                    <div class="module-glow"></div>
-                </div>
-                
-                <div class="service-module" data-service="innovation-lab">
-                    <div class="module-glass-effect"></div>
-                    <div class="module-content">
-                        <div class="module-icon-wrapper">
-                            <div class="icon-background"></div>
-                            <i class="fas fa-brain module-icon"></i>
-                        </div>
-                        <h3 class="module-title">Innovation Lab</h3>
-                        <p class="module-description">AI, IoT, blockchain and smart city solutions</p>
-                        <div class="module-stats">
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="50">0</span>
-                                <span class="stat-label">AI Models</span>
-                            </div>
-                            <div class="stat-separator"></div>
-                            <div class="stat-item">
-                                <span class="stat-value" data-count="25">0</span>
-                                <span class="stat-label">Patents</span>
-                            </div>
-                        </div>
-                        <div class="module-status">
-                            <span class="status-icon warning"></span>
-                            <span class="status-text">Innovating</span>
-                        </div>
-                    </div>
-                    <div class="module-glow"></div>
-                </div>
-                
-            </div>
-            
-            <!-- Command Actions -->
-            <div class="command-actions">
-                <button class="primary-action-btn" id="exploreServicesBtn">
-                    <div class="btn-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="btn-content">
-                        <span class="btn-main">Explore Our Services</span>
-                        <span class="btn-sub">Full portfolio</span>
-                    </div>
-                    <div class="btn-glow"></div>
-                </button>
-                
-                <button class="secondary-action-btn" id="getConsultationBtn">
-                    <div class="btn-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <div class="btn-content">
-                        <span class="btn-main">Get Consultation</span>
-                        <span class="btn-sub">Free analysis</span>
-                    </div>
-                    <div class="btn-glow"></div>
-                </button>
+                <!-- Other content sections will be added dynamically -->
             </div>
         </div>
-        
-    </section>
-
-    <!-- Loading overlay for page transitions -->
-    <div class="page-transition-overlay" id="pageTransition">
-        <div class="transition-content">
-            <div class="transition-spinner"></div>
-            <div class="transition-text">Loading...</div>
-        </div>
-    </div>
+    </main>
 
     <!-- JavaScript -->
-    <script src="{% static 'js/hero-animations.js' %}"></script>
+    <script src="{% static 'js/content-switcher.js' %}"></script>
+    <script src="{% static 'js/animations.js' %}"></script>
+    <script src="{% static 'js/mobile-navigation.js' %}"></script>
+    <script src="{% static 'js/init-fix.js' %}"></script>
 </body>
 </html>
